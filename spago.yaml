@@ -10,6 +10,7 @@ package:
     - node-buffer
     - node-net
     - node-streams
+    - node-tls
     - node-url
     - nullable
     - options
