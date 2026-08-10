@@ -16,7 +16,6 @@ package:
     - options
     - prelude
     - unsafe-coerce
-workspace:
   package_set:
     registry: 46.0.0
 
