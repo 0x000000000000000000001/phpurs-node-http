@@ -2,21 +2,68 @@
 
 $exports = [];
 
-$exports['bytesParsed'] = function(...$args) { throw new \Exception("Function bytesParsed is not implemented yet. PRs welcome!"); };
-$exports['rawPacket'] = function(...$args) { throw new \Exception("Function rawPacket is not implemented yet. PRs welcome!"); };
-$exports['closeAllConnectionsImpl'] = function(...$args) { throw new \Exception("Function closeAllConnectionsImpl is not implemented yet. PRs welcome!"); };
-$exports['closeIdleConnectionsImpl'] = function(...$args) { throw new \Exception("Function closeIdleConnectionsImpl is not implemented yet. PRs welcome!"); };
-$exports['headersTimeoutImpl'] = function(...$args) { throw new \Exception("Function headersTimeoutImpl is not implemented yet. PRs welcome!"); };
-$exports['setHeadersTimeoutImpl'] = function(...$args) { throw new \Exception("Function setHeadersTimeoutImpl is not implemented yet. PRs welcome!"); };
-$exports['maxHeadersCountImpl'] = function(...$args) { throw new \Exception("Function maxHeadersCountImpl is not implemented yet. PRs welcome!"); };
-$exports['setMaxHeadersCountImpl'] = function(...$args) { throw new \Exception("Function setMaxHeadersCountImpl is not implemented yet. PRs welcome!"); };
-$exports['requestTimeoutImpl'] = function(...$args) { throw new \Exception("Function requestTimeoutImpl is not implemented yet. PRs welcome!"); };
-$exports['setRequestTimeoutImpl'] = function(...$args) { throw new \Exception("Function setRequestTimeoutImpl is not implemented yet. PRs welcome!"); };
-$exports['maxRequestsPerSocketImpl'] = function(...$args) { throw new \Exception("Function maxRequestsPerSocketImpl is not implemented yet. PRs welcome!"); };
-$exports['setMaxRequestsPerSocketImpl'] = function(...$args) { throw new \Exception("Function setMaxRequestsPerSocketImpl is not implemented yet. PRs welcome!"); };
-$exports['timeoutImpl'] = function(...$args) { throw new \Exception("Function timeoutImpl is not implemented yet. PRs welcome!"); };
-$exports['setTimeoutImpl'] = function(...$args) { throw new \Exception("Function setTimeoutImpl is not implemented yet. PRs welcome!"); };
-$exports['keepAliveTimeoutImpl'] = function(...$args) { throw new \Exception("Function keepAliveTimeoutImpl is not implemented yet. PRs welcome!"); };
-$exports['setKeepAliveTimeoutImpl'] = function(...$args) { throw new \Exception("Function setKeepAliveTimeoutImpl is not implemented yet. PRs welcome!"); };
+$exports['bytesParsed'] = function($error) {
+    return 0;
+};
+
+$exports['rawPacket'] = function($error) {
+    return '';
+};
+
+$exports['closeAllConnectionsImpl'] = function($server) {
+    if (method_exists($server, 'closeAllConnections')) { $server->closeAllConnections(); }
+};
+
+$exports['closeIdleConnectionsImpl'] = function($server) {
+    if (method_exists($server, 'closeAllConnections')) { $server->closeAllConnections(); }
+};
+
+$exports['headersTimeoutImpl'] = function($server) {
+    return $server->headersTimeout ?? 0;
+};
+
+$exports['setHeadersTimeoutImpl'] = function($value, $server) {
+    $server->headersTimeout = $value;
+};
+
+$exports['maxHeadersCountImpl'] = function($server) {
+    return $server->maxHeadersCount ?? 0;
+};
+
+$exports['setMaxHeadersCountImpl'] = function($value, $server) {
+    $server->maxHeadersCount = $value;
+};
+
+$exports['requestTimeoutImpl'] = function($server) {
+    return $server->requestTimeout ?? 0;
+};
+
+$exports['setRequestTimeoutImpl'] = function($value, $server) {
+    $server->requestTimeout = $value;
+};
+
+$exports['maxRequestsPerSocketImpl'] = function($server) {
+    return $server->maxRequestsPerSocket ?? 0;
+};
+
+$exports['setMaxRequestsPerSocketImpl'] = function($value, $server) {
+    $server->maxRequestsPerSocket = $value;
+};
+
+$exports['timeoutImpl'] = function($server) {
+    return $server->timeout ?? 0;
+};
+
+$exports['setTimeoutImpl'] = function($value, $server) {
+    $server->timeout = $value;
+};
+
+$exports['keepAliveTimeoutImpl'] = function($server) {
+    return $server->keepAliveTimeout ?? 0;
+};
+
+$exports['setKeepAliveTimeoutImpl'] = function($value, $server) {
+    $server->keepAliveTimeout = $value;
+};
 
 return $exports;

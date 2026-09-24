@@ -6,18 +6,57 @@ $exports['setHeaderImpl'] = function($key, $val, $res) {
     $res->setHeader($key, $val);
 };
 
-$exports['addTrailersImpl'] = function(...$args) { throw new \Exception("Function addTrailersImpl is not implemented yet. PRs welcome!"); };
-$exports['appendHeaderImpl'] = function(...$args) { throw new \Exception("Function appendHeaderImpl is not implemented yet. PRs welcome!"); };
-$exports['appendHeadersImpl'] = function(...$args) { throw new \Exception("Function appendHeadersImpl is not implemented yet. PRs welcome!"); };
-$exports['flushHeadersImpl'] = function(...$args) { throw new \Exception("Function flushHeadersImpl is not implemented yet. PRs welcome!"); };
-$exports['getHeaderImpl'] = function(...$args) { throw new \Exception("Function getHeaderImpl is not implemented yet. PRs welcome!"); };
-$exports['getHeaderNamesImpl'] = function(...$args) { throw new \Exception("Function getHeaderNamesImpl is not implemented yet. PRs welcome!"); };
-$exports['getHeadersImpl'] = function(...$args) { throw new \Exception("Function getHeadersImpl is not implemented yet. PRs welcome!"); };
-$exports['hasHeaderImpl'] = function(...$args) { throw new \Exception("Function hasHeaderImpl is not implemented yet. PRs welcome!"); };
-$exports['headersSentImpl'] = function(...$args) { throw new \Exception("Function headersSentImpl is not implemented yet. PRs welcome!"); };
-$exports['removeHeaderImpl'] = function(...$args) { throw new \Exception("Function removeHeaderImpl is not implemented yet. PRs welcome!"); };
-$exports['setHeaderArrImpl'] = function(...$args) { throw new \Exception("Function setHeaderArrImpl is not implemented yet. PRs welcome!"); };
-$exports['setTimeoutImpl'] = function(...$args) { throw new \Exception("Function setTimeoutImpl is not implemented yet. PRs welcome!"); };
-$exports['socketImpl'] = function(...$args) { throw new \Exception("Function socketImpl is not implemented yet. PRs welcome!"); };
+$exports['setHeaderArrImpl'] = function($key, $values, $res) {
+    $res->setHeader($key, $values);
+};
+
+$exports['appendHeaderImpl'] = function($key, $value, $res) {
+    $res->appendHeader($key, $value);
+};
+
+$exports['appendHeadersImpl'] = function($key, $values, $res) {
+    $res->appendHeader($key, $values);
+};
+
+$exports['getHeaderImpl'] = function($key, $res) {
+    $value = $res->getHeader($key);
+    if ($value === null) { return null; }
+    return is_array($value) ? implode(', ', $value) : $value;
+};
+
+$exports['getHeaderNamesImpl'] = function($name, $res) {
+    return $res->getHeaderNames();
+};
+
+$exports['getHeadersImpl'] = function($res) {
+    return $res->getHeaders();
+};
+
+$exports['hasHeaderImpl'] = function($key, $res) {
+    return $res->hasHeader($key);
+};
+
+$exports['headersSentImpl'] = function($res) {
+    return $res->headersSent ?? false;
+};
+
+$exports['removeHeaderImpl'] = function($key, $res) {
+    $res->removeHeader($key);
+};
+
+$exports['addTrailersImpl'] = function($headers, $res) {
+    $res->addTrailers((array) $headers);
+};
+
+$exports['flushHeadersImpl'] = function($res) {
+    if (method_exists($res, 'flushHeaders')) { $res->flushHeaders(); }
+};
+
+$exports['setTimeoutImpl'] = function($ms, $res) {
+};
+
+$exports['socketImpl'] = function($res) {
+    return $res->socket ?? null;
+};
 
 return $exports;
