@@ -2,68 +2,66 @@
 
 $exports = [];
 
-$exports['setStatusCodeImpl'] = function($code, $res) {
+$exports['setStatusCodeImpl'] = function ($code, $res) {
     $res->setStatusCode($code);
 };
 
-$exports['req'] = function($res) {
+$exports['req'] = function ($res) {
     return $res->req;
 };
 
-$exports['sendDateImpl'] = function($res) {
+$exports['sendDateImpl'] = function ($res) {
     return $res->sendDate ?? true;
 };
 
-$exports['setSendDateImpl'] = function($value, $res) {
+$exports['setSendDateImpl'] = function ($value, $res) {
     $res->sendDate = $value;
 };
 
-$exports['statusCodeImpl'] = function($res) {
+$exports['statusCodeImpl'] = function ($res) {
     return $res->statusCode ?? 200;
 };
 
-$exports['statusMessageImpl'] = function($res) {
+$exports['statusMessageImpl'] = function ($res) {
     return $res->statusMessage ?? '';
 };
 
-$exports['setStatusMessageImpl'] = function($message, $res) {
+$exports['setStatusMessageImpl'] = function ($message, $res) {
     $res->statusMessage = $message;
 };
 
-$exports['strictContentLengthImpl'] = function($res) {
+$exports['strictContentLengthImpl'] = function ($res) {
     return $res->strictContentLength ?? false;
 };
 
-$exports['setStrictContentLengthImpl'] = function($value, $res) {
+$exports['setStrictContentLengthImpl'] = function ($value, $res) {
     $res->strictContentLength = $value;
 };
 
-$exports['writeEarlyHintsImpl'] = function($hints, $res) {
-};
+$exports['writeEarlyHintsImpl'] = function ($hints, $res) {};
 
-$exports['writeEarlyHintsCbImpl'] = function($hints, $cb, $res) {
+$exports['writeEarlyHintsCbImpl'] = function ($hints, $cb, $res) {
     $cb();
 };
 
-$exports['writeHeadImpl'] = function($code, $res) {
+$exports['writeHeadImpl'] = function ($code, $res) {
     $res->writeHead($code);
 };
 
-$exports['writeHeadMsgImpl'] = function($code, $message, $res) {
+$exports['writeHeadMsgImpl'] = function ($code, $message, $res) {
     $res->statusMessage = $message;
     $res->writeHead($code);
 };
 
-$exports['writeHeadHeadersImpl'] = function($code, $headers, $res) {
+$exports['writeHeadHeadersImpl'] = function ($code, $headers, $res) {
     $res->writeHead($code, (array) $headers);
 };
 
-$exports['writeHeadMsgHeadersImpl'] = function($code, $message, $headers, $res) {
+$exports['writeHeadMsgHeadersImpl'] = function ($code, $message, $headers, $res) {
     $res->statusMessage = $message;
     $res->writeHead($code, (array) $headers);
 };
 
-$exports['writeProcessingImpl'] = function($res) {
-};
+$exports['writeProcessingImpl'] = function ($res) {};
 
 return $exports;
